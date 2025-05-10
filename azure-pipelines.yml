@@ -21,6 +21,12 @@ jobs:
       azureSubscription: 'devops-demo-service-connection'
       command: 'build'
       projects: '**/*.csproj'
+  
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
 
 
 
