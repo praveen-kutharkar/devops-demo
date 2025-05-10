@@ -22,6 +22,12 @@ jobs:
       command: 'build'
       projects: '**/*.csproj'
   
+  - task: DotNetCoreCLI@2
+    inputs:
+      azureSubscription: 'devops-demo-service-connection'
+      command: 'publish'
+      publishWebProjects: true
+      arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
