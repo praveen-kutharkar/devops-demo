@@ -18,7 +18,7 @@ namespace devops_demo
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!, run-1");
+            return new OkObjectResult("Welcome to Azure Functions!, run-2 CICD test-1");
         }
     }
 }
