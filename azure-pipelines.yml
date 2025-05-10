@@ -1,7 +1,14 @@
 # Starter pipeline
 
-# Define the build number format
-name: $(Build.SourceBranchName)-$(Build.BuildId)
+# Define versioning variables
+variables:
+  major: 1
+  minor: 0
+  patch: $[counter(variables['Build.SourceBranchName'], 1)]
+  buildConfiguration: 'Release'
+
+# Set the build number to follow Semantic Versioning
+name: $(major).$(minor).$(patch).$(Rev:.r)
 
 pool:
   name: 'praveen-self-hosted-agent'
