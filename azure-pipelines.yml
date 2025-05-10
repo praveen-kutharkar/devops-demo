@@ -8,7 +8,8 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  name: 'praveen-self-hosted-agent'
+  #vmImage: 'windows-latest'
 
 steps:
 - script: echo Hello, world!
