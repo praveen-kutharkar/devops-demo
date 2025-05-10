@@ -21,7 +21,6 @@ jobs:
       azureSubscription: 'devops-demo-service-connection'
       command: 'build'
       projects: '**/*.csproj'
-      arguments: '--configuration $(buildConfiguration)'
 
 
 
