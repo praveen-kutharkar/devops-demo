@@ -13,8 +13,7 @@ pool:
 jobs:
 - job: Build
   steps:
-  - script: echo Hello, world!
-    displayName: 'Run a one-line script'
+  
   
   - task: DotNetCoreCLI@2
     inputs:
@@ -22,6 +21,10 @@ jobs:
       command: 'build'
       projects: '**/*.csproj'
   
+  - script: |
+      echo "##vso[build.updatebuildnumber]$(Build.SourceBranchName)-$(Build.BuildId)"
+    displayName: 'Set Build Number'
+
   - task: DotNetCoreCLI@2
     inputs:
       azureSubscription: 'devops-demo-service-connection'
