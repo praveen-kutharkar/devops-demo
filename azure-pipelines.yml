@@ -1,11 +1,7 @@
 # Starter pipeline
 
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-# trigger:
-# - main
+# Define the build number format
+name: $(Build.SourceBranchName)-$(Build.BuildId)
 
 pool:
   name: 'praveen-self-hosted-agent'
@@ -14,17 +10,21 @@ jobs:
 - job: Build
   steps:
   
-  
+  # Restore NuGet packages
+  - task: DotNetCoreCLI@2
+    inputs:
+      azureSubscription: 'devops-demo-service-connection'
+      command: 'restore'
+      projects: '**/*.csproj'
+
+  # Build the project
   - task: DotNetCoreCLI@2
     inputs:
       azureSubscription: 'devops-demo-service-connection'
       command: 'build'
       projects: '**/*.csproj'
-  
-  - script: |
-      echo "##vso[build.updatebuildnumber]$(Build.SourceBranchName)-$(Build.BuildId)"
-    displayName: 'Set Build Number'
 
+  # Publish the project
   - task: DotNetCoreCLI@2
     inputs:
       azureSubscription: 'devops-demo-service-connection'
@@ -32,13 +32,11 @@ jobs:
       publishWebProjects: false
       projects: '**/*.csproj'
       zipAfterPublish: true
-      arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+      arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+
+  # Publish build artifacts
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'drop'
       publishLocation: 'Container'
-
-
-
-
