@@ -1,5 +1,10 @@
 # Starter pipeline
-
+trigger:
+  branches:
+    include:
+      - main
+    exclude:
+      - feature/*
 # Define versioning variables
 variables:
   major: 1
