@@ -15,19 +15,19 @@ trigger:
 #         - main
 #     always: true
 
-# pr:
-#   branches:
-#     include:
-#       - main
-#       - release/*
-#     exclude:
-#       - feature/*
+pr:
+  branches:
+    include:
+      - main
+      - release/*
+    exclude:
+      - feature/*
 
-#   paths:
-#     include:
-#       - src/*
-#     exclude:
-#       - docs/*
+  paths:
+    include:
+      - src/*
+    exclude:
+      - docs/*
 # Define versioning variables
 variables:
   major: 1
