@@ -18,7 +18,10 @@ namespace devops_demo
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!, run-4 CICD test-4");
+            var currentTime= DateTime.Now;
+            var messageString = "Welcome to Azure Functions!, run-4 CICD test-4";
+            var returnmessage= "Current Server Time is: " + currentTime.ToString()+ "\n" + messageString;
+            return new OkObjectResult(returnmessage);
         }
     }
 }
