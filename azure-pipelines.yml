@@ -5,6 +5,15 @@ trigger:
       - main
     exclude:
       - feature/*
+
+# schedules:
+#   - cron: "0 2 * * *"   # UTC time
+#     displayName: Nightly Build
+#     branches:
+#       include:
+#         - main
+#     always: true
+
 # Define versioning variables
 variables:
   major: 1
