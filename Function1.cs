@@ -19,7 +19,7 @@ namespace devops_demo
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
             var currentTime= DateTime.Now;
-            var messageString = "Welcome to Azure Functions!, run-2 CICD test-2";
+            var messageString = "Welcome to Azure Functions!, run-3 CICD test-3";
             var returnmessage= "Current Server Time is: " + currentTime.ToString()+ "\n" + messageString;
             return new OkObjectResult(returnmessage);
         }
